@@ -17,8 +17,10 @@ export default function Login() {
 
     try {
       const response = await api.post('/auth/login', { email, password });
-      console.log('Login exitoso:', response);
+      console.log('Login exitoso - respuesta completa:', response);
+      console.log('Token recibido:', response.token);
       localStorage.setItem('token', response.token);
+      console.log('Token guardado en localStorage:', localStorage.getItem('token'));
       navigate('/productos'); 
     } catch (err) {
       setError('Email o contraseña incorrectos');
