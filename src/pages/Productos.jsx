@@ -11,7 +11,8 @@ export default function Productos() {
     descripcion: '',
     precio: '',
     stock: '',
-    imagen_url: ''
+    imagen_url: '',
+    youtube_id: ''  
   });
   const [submitLoading, setSubmitLoading] = useState(false);
 
@@ -59,7 +60,8 @@ export default function Productos() {
         descripcion: '',
         precio: '',
         stock: '',
-        imagen_url: ''
+        imagen_url: '',
+        youtube_id: ''
       });
       
       // Ocultar el formulario
@@ -184,6 +186,14 @@ export default function Productos() {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="https://ejemplo.com/imagen.jpg"
               />
+              <input
+                type="url"
+                name="youtube_id"
+                value={formData.youtube_id}
+                onChange={handleInputChange}
+                className="w-full mt-4 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="ID de YouTube (ej: dQw4w9WgXcQ)"
+              />
             </div>
 
             <div className="flex gap-3 pt-2">
@@ -222,6 +232,23 @@ export default function Productos() {
               key={producto.id} 
               className="border rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
             >
+              {producto.youtube_id ? (
+                <iframe
+                  width="100%"
+                  height="200"
+                  src={`https://www.youtube.com/embed/${producto.youtube_id}`}
+                  title={producto.nombre}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                ></iframe>
+              ) : (
+                <img 
+                  src={producto.imagen_url || 'https://via.placeholder.com/400x200?text=Sin+Imagen'}
+                  alt={producto.nombre}
+                  className="w-full h-48 object-cover rounded mb-4"
+                />
+              )}  
               <h3 className="text-lg font-semibold mb-2">{producto.nombre}</h3>
               {producto.descripcion && (
                 <p className="text-gray-600 text-sm mb-2">{producto.descripcion}</p>
@@ -236,6 +263,7 @@ export default function Productos() {
                   Stock: {producto.stock}
                 </p>
               )}
+
             </div>
           ))}
         </div>
