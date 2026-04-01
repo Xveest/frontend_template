@@ -233,8 +233,8 @@ export default function Productos() {
                 </label>
                 <input
                   type="text"
-                  name="youtube_id"
-                  value={formData.youtube_id}
+                  name="id_youtube"
+                  value={formData.id_youtube}
                   onChange={handleInputChange}
                   className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                   placeholder="ID de YouTube (ej: dQw4w9WgXcQ)"
